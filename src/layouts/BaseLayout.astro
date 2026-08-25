@@ -28,15 +28,15 @@ const {
     <meta name="description" content={description} />
     <title>{title} · Aubert Oktaviantono</title>
     <script is:inline>
-      // Apply the saved/system theme before first paint, so there's no flash.
+      // Light is the default regardless of system preference. Apply the
+      // saved choice (or the light default) before first paint, so there's
+      // no flash.
       (function () {
         try {
-          var saved = localStorage.getItem('theme');
-          if (saved === 'light' || saved === 'dark') {
-            document.documentElement.setAttribute('data-theme', saved);
-          }
+          var saved = localStorage.getItem("theme");
+          document.documentElement.setAttribute("data-theme", saved === "dark" ? "dark" : "light");
         } catch (e) {
-          /* localStorage unavailable — fall back to system preference via CSS */
+          document.documentElement.setAttribute("data-theme", "light");
         }
       })();
     </script>
@@ -78,20 +78,9 @@ const {
     --radius: 4px;
   }
 
-  /* system preference, only when the visitor hasn't explicitly chosen */
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) {
-      --bg: var(--charcoal);
-      --bg-elev: #47443f;
-      --text: var(--cream);
-      --text-dim: #aba095;
-      --accent: #2f93ac;
-      --accent-2: #db8b45;
-      --border: #524f49;
-    }
-  }
-
-  /* explicit choice always wins, in both directions */
+  /* data-theme is always set explicitly (light by default, dark only via
+     the toggle), so theme colors key off it directly — no system-preference
+     media query needed. */
   :root[data-theme='dark'] {
     --bg: var(--charcoal);
     --bg-elev: #47443f;
