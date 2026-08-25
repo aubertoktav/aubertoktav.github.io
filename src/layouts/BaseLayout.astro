@@ -1,7 +1,6 @@
 ---
-import '@fontsource/fraunces/600.css';
-import '@fontsource/fraunces/700.css';
-import '@fontsource/fraunces/900.css';
+import '@fontsource/lora/600.css';
+import '@fontsource/lora/700.css';
 import '@fontsource/space-mono/400.css';
 import '@fontsource/space-mono/700.css';
 
@@ -55,62 +54,61 @@ const {
   :root {
     /* ---- fonts ---- */
     --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
     --font-mono: 'Space Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
 
-    /* ---- mid-century modern palette ---- */
-    --mustard: #d4a72c;
-    --burnt-orange: #c96a3b;
-    --teal: #3f8e82;
-    --rust: #b1533b;
-    --olive: #6e7b35;
-    --navy: #1b2a4a;
-    --cream: #f3e8cb;
-    --brown: #4a3524;
-    --maroon: #6b211a;
+    /* ---- mid-century modern palette (per your swatch, brown excluded) ---- */
+    --cream: #efe9dc;
+    --mustard: #d6a63a;
+    --burnt-orange: #c97c35;
+    --warm-gray: #8c7f79;
+    --brick-red: #99271a;
+    --olive: #6b7a2a;
+    --teal: #1f6e82;
+    --charcoal: #3d3b39;
 
-    /* ---- light theme (default) ---- */
+    /* ---- light theme (default): cream base ---- */
     --bg: var(--cream);
-    --bg-elev: #fbf4e3;
-    --text: #2b1d14;
-    --text-dim: #6b5842;
+    --bg-elev: #f7f2e7;
+    --text: var(--charcoal);
+    --text-dim: var(--warm-gray);
     --accent: var(--teal);
     --accent-2: var(--burnt-orange);
-    --border: #e0cfa0;
+    --border: #e3dac4;
     --radius: 4px;
   }
 
   /* system preference, only when the visitor hasn't explicitly chosen */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) {
-      --bg: #18120d;
-      --bg-elev: #221a13;
-      --text: #f1e4c6;
-      --text-dim: #b8a888;
-      --accent: #57b0a3;
-      --accent-2: #e08a4c;
-      --border: #3a2c1e;
+      --bg: var(--charcoal);
+      --bg-elev: #47443f;
+      --text: var(--cream);
+      --text-dim: #aba095;
+      --accent: #2f93ac;
+      --accent-2: #db8b45;
+      --border: #524f49;
     }
   }
 
   /* explicit choice always wins, in both directions */
   :root[data-theme='dark'] {
-    --bg: #18120d;
-    --bg-elev: #221a13;
-    --text: #f1e4c6;
-    --text-dim: #b8a888;
-    --accent: #57b0a3;
-    --accent-2: #e08a4c;
-    --border: #3a2c1e;
+    --bg: var(--charcoal);
+    --bg-elev: #47443f;
+    --text: var(--cream);
+    --text-dim: #aba095;
+    --accent: #2f93ac;
+    --accent-2: #db8b45;
+    --border: #524f49;
   }
   :root[data-theme='light'] {
     --bg: var(--cream);
-    --bg-elev: #fbf4e3;
-    --text: #2b1d14;
-    --text-dim: #6b5842;
+    --bg-elev: #f7f2e7;
+    --text: var(--charcoal);
+    --text-dim: var(--warm-gray);
     --accent: var(--teal);
     --accent-2: var(--burnt-orange);
-    --border: #e0cfa0;
+    --border: #e3dac4;
   }
 
   * {
