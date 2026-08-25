@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Resume">
+  <section class="placeholder">
+    <p class="eyebrow">Resume</p>
+    <h1>Coming soon</h1>
+    <p>
+      An interactive version of my CV is on the way. In the meantime, feel
+      free to <a href="mailto:aubert.oktaviantono@flip.id">email me</a> for a
+      copy.
+    </p>
+    <a class="back" href="/">&larr; Back home</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .placeholder {
+    padding: 6rem 0;
+  }
+  .eyebrow {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  h1 {
+    margin: 0.25rem 0 1rem;
+  }
+  .back {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+</style>

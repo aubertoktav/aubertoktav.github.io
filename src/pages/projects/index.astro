@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects">
+  <section class="placeholder">
+    <p class="eyebrow">Projects</p>
+    <h1>Coming soon</h1>
+    <p>
+      Work projects, things I'm learning, and personal side projects (music,
+      travel, general writing) will show up here as a tag-filterable grid.
+    </p>
+    <a class="back" href="/">&larr; Back home</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .placeholder {
+    padding: 6rem 0;
+  }
+  .eyebrow {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  h1 {
+    margin: 0.25rem 0 1rem;
+  }
+  .back {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+</style>

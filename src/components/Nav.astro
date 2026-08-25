@@ -1,0 +1,62 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/resume/', label: 'Resume' },
+  { href: '/projects/', label: 'Projects' },
+];
+const current = new URL(Astro.request.url).pathname;
+---
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">Aubert Oktaviantono</a>
+    <nav>
+      {links.map((link) => (
+        <a href={link.href} class={current === link.href ? 'active' : ''}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .brand:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+  nav a {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  nav a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav a.active {
+    color: var(--text);
+  }
+</style>
