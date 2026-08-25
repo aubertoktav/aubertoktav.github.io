@@ -1,60 +1,151 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 
 const stack = ['BigQuery', 'dbt', 'Redash', 'SQL', 'Python'];
+
+// TODO: swap these for your real profile URLs once you have them handy
+const email = 'aubert.oktaviantono@flip.id';
+const linkedinUrl = 'https://linkedin.com/in/aubertoktav';
+const instagramUrl = 'https://instagram.com/aubertoktav';
 ---
 
 <BaseLayout title="Home">
-  <section class="hero">
-    <p class="eyebrow">Data Analyst · Flip ID</p>
-    <h1>Aubert Oktaviantono</h1>
-    <p class="lede">
-      I turn messy data into decisions — building reliable pipelines and
-      dashboards with BigQuery, dbt, and Redash. Currently leveling up
-      toward analytics engineering and looking for the next challenge.
+  <section id="home" class="hero">
+    <div class="hero-photo" aria-hidden="true">
+      <span>Photo</span>
+    </div>
+    <div class="hero-content">
+      <p class="label eyebrow"><span class="dot"></span> Data Analyst @ Flip ID · open to new opportunities</p>
+      <h1>I turn messy data into decisions that hold up.</h1>
+      <p class="lede">
+        Data analytics &amp; pipelines — BigQuery, dbt, and Redash. Based on
+        the projects below, not a list of buzzwords.
+      </p>
+      <ul class="stack">
+        {stack.map((item) => <li>{item}</li>)}
+      </ul>
+      <div class="cta">
+        <a class="button primary" href={`mailto:${email}`}>Say hello</a>
+        <a class="button" href="/projects/">See projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <SectionHeading label="Selected Projects" />
+    <div class="coming-soon">
+      <p class="coming-soon-title">Coming soon</p>
+      <p>
+        Work projects, things I'm learning, and personal side projects will
+        show up here as a short preview — each one linking straight through
+        to its full write-up.
+      </p>
+      <a href="/projects/">Browse all projects &rarr;</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <SectionHeading label="About" />
+    <p class="about-text">
+      I'm a data analyst at Flip ID, working across BigQuery, dbt, and
+      Redash to turn raw transaction data into pipelines and dashboards
+      people actually trust. I'm currently leveling up toward analytics
+      engineering, and this site doubles as the place I write up that work.
     </p>
-    <ul class="stack">
-      {stack.map((item) => <li>{item}</li>)}
-    </ul>
-    <div class="cta">
-      <a class="button primary" href="/resume/">View résumé</a>
-      <a class="button" href="/projects/">See projects</a>
-      <a class="button ghost" href="https://github.com/aubertoktav" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="button ghost" href="mailto:aubert.oktaviantono@flip.id">Email</a>
+    <a href="/resume/">Read the full résumé &rarr;</a>
+  </section>
+
+  <section id="contact" class="contact">
+    <SectionHeading label="Let's Talk" />
+    <h2>Have something worth solving?</h2>
+    <div class="contact-icons">
+      <a class="icon-button icon-email" href={`mailto:${email}`} aria-label="Email me">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </a>
+      <a class="icon-button icon-linkedin" href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      </a>
+      <a class="icon-button icon-instagram" href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+        </svg>
+      </a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .hero {
-    padding: 6rem 0 4rem;
+    padding: 5rem 0 4rem;
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+  .hero-photo {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 220px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .hero-content {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    min-width: 0;
   }
   .eyebrow {
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin: 0;
   }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    display: inline-block;
+    flex: none;
+  }
   h1 {
+    font-family: var(--font-serif);
+    font-weight: 700;
     margin: 0;
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 4.5vw, 3.1rem);
+    line-height: 1.15;
   }
   .lede {
     color: var(--text-dim);
-    max-width: 42rem;
-    font-size: 1.1rem;
+    max-width: 38rem;
+    font-size: 1.05rem;
     line-height: 1.6;
+    margin: 0;
   }
   .stack {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     padding: 0;
-    margin: 0.5rem 0;
+    margin: 0;
     list-style: none;
   }
   .stack li {
@@ -63,18 +154,20 @@ const stack = ['BigQuery', 'dbt', 'Redash', 'SQL', 'Python'];
     padding: 0.3rem 0.85rem;
     font-size: 0.85rem;
     color: var(--text-dim);
+    font-family: var(--font-mono);
   }
   .cta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
   .button {
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.6rem 1.1rem;
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
     color: var(--text);
+    font-weight: 600;
   }
   .button:hover {
     text-decoration: none;
@@ -83,10 +176,93 @@ const stack = ['BigQuery', 'dbt', 'Redash', 'SQL', 'Python'];
   .button.primary {
     background: var(--accent);
     border-color: var(--accent);
-    color: #06231f;
-    font-weight: 600;
+    color: var(--bg);
   }
-  .button.ghost {
+  .button.primary:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      flex-direction: column;
+    }
+    .hero-photo {
+      width: 140px;
+      height: 170px;
+    }
+  }
+
+  /* --- Selected Projects --- */
+  .projects {
+    padding: 3rem 0;
+  }
+  .coming-soon {
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 2rem;
     color: var(--text-dim);
+  }
+  .coming-soon-title {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    color: var(--text);
+    margin: 0 0 0.5rem;
+  }
+  .coming-soon p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+  }
+
+  /* --- About --- */
+  .about {
+    padding: 3rem 0;
+  }
+  .about-text {
+    max-width: 42rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin: 0 0 1rem;
+  }
+
+  /* --- Contact --- */
+  .contact {
+    padding: 3rem 0 4rem;
+  }
+  .contact h2 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin: 0 0 1.5rem;
+  }
+  .contact-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  .icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .icon-button:hover {
+    text-decoration: none;
+  }
+  .icon-email:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+  .icon-linkedin:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+  .icon-instagram:hover {
+    border-color: var(--rust);
+    color: var(--rust);
   }
 </style>

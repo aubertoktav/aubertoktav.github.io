@@ -16,4 +16,7 @@ npm-debug.log*
 
 # macOS
 .DS_Store
+
+# scratch (leftover transfer bundles, etc.)
+*.tar.gz
 _to_delete/

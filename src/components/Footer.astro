@@ -1,9 +1,15 @@
 ---
 const year = new Date().getFullYear();
+// TODO: replace with your real LinkedIn URL
+const linkedinUrl = 'https://linkedin.com/in/aubertoktav';
 ---
 
 <footer class="footer">
   <p>&copy; {year} Aubert Oktaviantono. Built with Astro.</p>
+  <div class="footer-links">
+    <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="#home">Top &uarr;</a>
+  </div>
 </footer>
 
 <style>
@@ -14,5 +20,28 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--border);
     color: var(--text-dim);
     font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer p {
+    margin: 0;
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.25rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.78rem;
+  }
+  .footer-links a {
+    color: var(--text-dim);
+  }
+  .footer-links a:hover {
+    color: var(--accent);
+    text-decoration: none;
   }
 </style>

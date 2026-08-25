@@ -12,6 +12,8 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@fontsource/fraunces": "^5.0.19",
+    "@fontsource/space-mono": "^5.0.19",
     "astro": "^7.2.6"
   }
 }

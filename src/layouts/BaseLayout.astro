@@ -1,4 +1,10 @@
 ---
+import '@fontsource/fraunces/600.css';
+import '@fontsource/fraunces/700.css';
+import '@fontsource/fraunces/900.css';
+import '@fontsource/space-mono/400.css';
+import '@fontsource/space-mono/700.css';
+
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
@@ -22,6 +28,19 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title} · Aubert Oktaviantono</title>
+    <script is:inline>
+      // Apply the saved/system theme before first paint, so there's no flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', saved);
+          }
+        } catch (e) {
+          /* localStorage unavailable — fall back to system preference via CSS */
+        }
+      })();
+    </script>
   </head>
   <body>
     <Nav />
@@ -34,14 +53,64 @@ const {
 
 <style is:global>
   :root {
-    --bg: #0b0d10;
-    --bg-elev: #14171c;
-    --text: #e8eaed;
-    --text-dim: #9aa0a6;
-    --accent: #5fd0c0;
-    --accent-2: #7c9cff;
-    --border: #23262b;
-    --radius: 14px;
+    /* ---- fonts ---- */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-mono: 'Space Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+
+    /* ---- mid-century modern palette ---- */
+    --mustard: #d4a72c;
+    --burnt-orange: #c96a3b;
+    --teal: #3f8e82;
+    --rust: #b1533b;
+    --olive: #6e7b35;
+    --navy: #1b2a4a;
+    --cream: #f3e8cb;
+    --brown: #4a3524;
+    --maroon: #6b211a;
+
+    /* ---- light theme (default) ---- */
+    --bg: var(--cream);
+    --bg-elev: #fbf4e3;
+    --text: #2b1d14;
+    --text-dim: #6b5842;
+    --accent: var(--teal);
+    --accent-2: var(--burnt-orange);
+    --border: #e0cfa0;
+    --radius: 4px;
+  }
+
+  /* system preference, only when the visitor hasn't explicitly chosen */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg: #18120d;
+      --bg-elev: #221a13;
+      --text: #f1e4c6;
+      --text-dim: #b8a888;
+      --accent: #57b0a3;
+      --accent-2: #e08a4c;
+      --border: #3a2c1e;
+    }
+  }
+
+  /* explicit choice always wins, in both directions */
+  :root[data-theme='dark'] {
+    --bg: #18120d;
+    --bg-elev: #221a13;
+    --text: #f1e4c6;
+    --text-dim: #b8a888;
+    --accent: #57b0a3;
+    --accent-2: #e08a4c;
+    --border: #3a2c1e;
+  }
+  :root[data-theme='light'] {
+    --bg: var(--cream);
+    --bg-elev: #fbf4e3;
+    --text: #2b1d14;
+    --text-dim: #6b5842;
+    --accent: var(--teal);
+    --accent-2: var(--burnt-orange);
+    --border: #e0cfa0;
   }
 
   * {
@@ -54,14 +123,14 @@ const {
     padding: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans);
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   main {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    min-height: calc(100vh - 160px);
   }
 
   a {
@@ -71,5 +140,27 @@ const {
 
   a:hover {
     text-decoration: underline;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  section {
+    scroll-margin-top: 90px;
   }
 </style>
